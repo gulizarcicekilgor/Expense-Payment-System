@@ -78,3 +78,5 @@ C:\Users\guliz\Desktop\CHomework\BitirmeProjesi\Expense-Payment-System\WebApi\bi
 C:\Users\guliz\Desktop\CHomework\BitirmeProjesi\Expense-Payment-System\WebApi\bin\Debug\net7.0\Mono.TextTemplating.dll
 C:\Users\guliz\Desktop\CHomework\BitirmeProjesi\Expense-Payment-System\WebApi\bin\Debug\net7.0\System.CodeDom.dll
 C:\Users\guliz\Desktop\CHomework\BitirmeProjesi\Expense-Payment-System\WebApi\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\guliz\Desktop\CHomework\BitirmeProjesi\Expense-Payment-System\WebApi\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\guliz\Desktop\CHomework\BitirmeProjesi\Expense-Payment-System\WebApi\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

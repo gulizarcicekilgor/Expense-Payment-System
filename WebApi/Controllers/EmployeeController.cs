@@ -1,6 +1,9 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Business.Command;
 using WebApi.Data;
+using WebApi.Models;
 
 namespace WebApi.Controllers
 {
@@ -9,16 +12,23 @@ namespace WebApi.Controllers
     public class EmployeeController : ControllerBase
     {
         public readonly emsDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public EmployeeController(emsDbContext dbContext)
+        public EmployeeController(emsDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
-        // [HttpPost]
-        // [Authorize(EmployeeRole = "admin")]
-        // public IActionResult Post([FromBody] Employee employee)
-        // {
-        // }
+
+
+        [HttpPost]
+        public IActionResult CreateEmployee([FromBody] CreateEmployeeModel employee)
+        {
+            CreateEmployeeCommand command = new CreateEmployeeCommand(_dbContext, _mapper);
+            command.Model = employee;
+            command.Handle();
+            return Ok();
+        }
 
     }
 }
