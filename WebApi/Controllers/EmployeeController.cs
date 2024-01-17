@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Data;
 
@@ -13,6 +14,14 @@ namespace WebApi.Controllers
         {
             _dbContext = dbContext;
         }
+        // [HttpPost]
+        // [Authorize(EmployeeRole = "admin")]
+        // public IActionResult Post([FromBody] Employee employee)
+        // {
+        // }
+        
+
+
     }
 }
 

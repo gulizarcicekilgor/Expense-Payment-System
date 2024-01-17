@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "/kZ1PPIJS2Te0jGKxwhqXcfhOkgX5MAHnh78EPv1f7JVsDcw9nfTPQDJRQyhhl840q25fcpQxKfuEFJ28Dm46w==",
+  "dgSpecHash": "s65b5XZxZ3ZcXilPuQZS+Le/FXFoR/+YV/UiGEtf0NaiZXja5rLZ/HajnmwpRyMaqfsnKRCrDWcS7DcXUdesug==",
   "success": true,
   "projectFilePath": "C:\\Users\\guliz\\Desktop\\CHomework\\BitirmeProjesi\\Expense-Payment-System\\WebApi\\WebApi.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\guliz\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Users\\guliz\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\guliz\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
+    "C:\\Users\\guliz\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.0\\microsoft.aspnetcore.authentication.jwtbearer.7.0.0.nupkg.sha512",
     "C:\\Users\\guliz\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",
     "C:\\Users\\guliz\\.nuget\\packages\\microsoft.aspnetcore.authorization.policy\\2.2.0\\microsoft.aspnetcore.authorization.policy.2.2.0.nupkg.sha512",
     "C:\\Users\\guliz\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
