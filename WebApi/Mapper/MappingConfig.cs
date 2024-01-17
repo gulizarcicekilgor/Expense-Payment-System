@@ -9,8 +9,11 @@ namespace WebApi.Mapper
         {
                       //kaynak obje, değiştitiecek obje
             CreateMap<Employee, EmployeeLoginModel>();
-            CreateMap<Employee,CreateEmployeeModel>();
-            CreateMap<CreateEmployeeModel,Employee>();
+            CreateMap<Employee,CreateEmployeeModelRquest>();
+            CreateMap<CreateEmployeeModelRquest,Employee>();
+            CreateMap<Employee,GetEmployeeModelResponse>();
+            CreateMap<GetEmployeeModelResponse,Employee>();
+            
             
         }
 

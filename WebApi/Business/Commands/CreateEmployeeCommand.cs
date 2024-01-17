@@ -3,11 +3,11 @@ using WebApi.Data;
 using WebApi.Models;
 using WebApi.Data.Entities;
 
-namespace WebApi.Business.Command
+namespace WebApi.Business.Commands
 {
     public class CreateEmployeeCommand
     {   
-        public CreateEmployeeModel Model {get; set;}
+        public CreateEmployeeModelRquest Model {get; set;}
         private readonly emsDbContext _dbContext;
         private readonly IMapper _mapper;
 
