@@ -3,27 +3,27 @@ using WebApi.Data;
 using WebApi.Models;
 using WebApi.Data.Entities;
 
-namespace WebApi.Business.Commands.EmployeeCommands
+namespace WebApi.Business.Commands.UserCommands
 {
-    public class CreateEmployeeCommand
+    public class CreateUserCommand
     {   
-        public CreateEmployeeModelRequest Model {get; set;}
+        public CreateUserModelRequest Model {get; set;}
         private readonly emsDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public CreateEmployeeCommand(emsDbContext dbContext,IMapper mapper)
+        public CreateUserCommand(emsDbContext dbContext,IMapper mapper)
         {   _dbContext = dbContext;
             _mapper = mapper;
         }
         public void Handle()
         {
-            var employee = _dbContext.Employees.SingleOrDefault(e => e.IdentityNumber == Model.IdentityNumber);
-            if (employee is not null)
+            var user = _dbContext.Users.SingleOrDefault(e => e.UserName == Model.UserName); //değiştirilcek bu kontrol
+            if (user is not null)
             {
                 throw new InvalidOperationException("Employee already exists");
             }
-            employee = _mapper.Map<Employee>(Model);
-            _dbContext.Employees.Add(employee);
+            user = _mapper.Map<User>(Model);
+            _dbContext.Users.Add(user);
             _dbContext.SaveChanges();
         }
 
@@ -39,7 +39,7 @@ namespace WebApi.Business.Commands.EmployeeCommands
         // public string FirstName { get; set; }
         // public string LastName { get; set; }
         // public string Email { get; set; }
-        // public string EmployeeRole {get; set; }
+        // public string ExpenceRole {get; set; }
 
 
 }

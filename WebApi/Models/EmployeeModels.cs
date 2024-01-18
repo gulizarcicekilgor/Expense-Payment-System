@@ -1,6 +1,8 @@
+using WebApi.Data.Entities;
+
 namespace WebApi.Models
 {
-    public class CreateEmployeeModelRquest
+    public class CreateEmployeeModelRequest
     {   
         public string FirstName { get; set; }
         public string LastName { get; set; }

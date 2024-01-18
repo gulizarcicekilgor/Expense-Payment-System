@@ -29,7 +29,7 @@ namespace WebApi.Controllers
 
 
         [HttpPost]
-        public IActionResult CreateEmployee([FromBody] CreateEmployeeModelRquest employee)
+        public IActionResult CreateEmployee([FromBody] CreateEmployeeModelRequest employee)
         {
             CreateEmployeeCommand command = new CreateEmployeeCommand(_dbContext, _mapper);
             command.Model = employee;

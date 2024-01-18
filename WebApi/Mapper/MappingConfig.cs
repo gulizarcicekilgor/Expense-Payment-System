@@ -1,6 +1,7 @@
 using AutoMapper;
 using WebApi.Data.Entities;
 using WebApi.Models;
+using WebApi.TokenOperations;
 namespace WebApi.Mapper
 {
     public class MappingConfig : Profile //AutoMapperden gelen profile
@@ -8,9 +9,8 @@ namespace WebApi.Mapper
         public MappingConfig()
         {
                       //kaynak obje, değiştitiecek obje
-            CreateMap<Employee, EmployeeLoginModel>();
-            CreateMap<Employee,CreateEmployeeModelRquest>();
-            CreateMap<CreateEmployeeModelRquest,Employee>();
+            CreateMap<Employee,CreateEmployeeModelRequest>();
+            CreateMap<CreateEmployeeModelRequest,Employee>();
             
             CreateMap<Employee,GetEmployeeModelResponse>();
             CreateMap<GetEmployeeModelResponse,Employee>();
@@ -21,7 +21,7 @@ namespace WebApi.Mapper
              CreateMap<Expense, GetExpenseModelResponse>();
             CreateMap<GetExpenseModelResponse, Expense>();
 
-
+            CreateMap<CreateUserModelRequest, User>();
             
             
         }
