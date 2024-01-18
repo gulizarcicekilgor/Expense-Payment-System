@@ -3,7 +3,7 @@ using WebApi.Data;
 using WebApi.Models;
 using WebApi.Data.Entities;
 
-namespace WebApi.Business.Commands
+namespace WebApi.Business.Commands.EmployeeCommands
 {
     public class CreateEmployeeCommand
     {   

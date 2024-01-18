@@ -1,7 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Business.Commands;
-using WebApi.Business.Queries;
+using WebApi.Business.Commands.EmployeeCommands;
+using WebApi.Business.Queries.EmployeeQueries;
 using WebApi.Data;
 using WebApi.Models;
 

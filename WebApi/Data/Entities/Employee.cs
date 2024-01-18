@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
 using System.Text.Json.Serialization;
 
 namespace WebApi.Data.Entities
@@ -17,6 +18,9 @@ namespace WebApi.Data.Entities
         public string? EmployeeRole {get; set; }
         public string? RefreshToken { get; set; }
         public DateTime? RefreshTokenEndDate { get; set; }
+
+        public int? ExpenseId {get; set; }   //foreign key ilişkisi
+        public virtual Expense? Expense { get; set; }
     }
 
 }

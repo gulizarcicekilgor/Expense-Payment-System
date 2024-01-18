@@ -1,9 +1,9 @@
-using System.Linq;
+
 using AutoMapper;
 using WebApi.Data;
 using WebApi.Models;
 
-namespace WebApi.Business.Queries
+namespace WebApi.Business.Queries.EmployeeQueries
 {
     public class GetEmployeeQuery
     {   

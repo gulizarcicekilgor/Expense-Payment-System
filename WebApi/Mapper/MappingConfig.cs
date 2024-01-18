@@ -11,8 +11,17 @@ namespace WebApi.Mapper
             CreateMap<Employee, EmployeeLoginModel>();
             CreateMap<Employee,CreateEmployeeModelRquest>();
             CreateMap<CreateEmployeeModelRquest,Employee>();
+            
             CreateMap<Employee,GetEmployeeModelResponse>();
             CreateMap<GetEmployeeModelResponse,Employee>();
+
+            CreateMap<Expense, CreateExpenseModelRquest>();
+            CreateMap<CreateExpenseModelRquest, Expense>();
+
+             CreateMap<Expense, GetExpenseModelResponse>();
+            CreateMap<GetExpenseModelResponse, Expense>();
+
+
             
             
         }
