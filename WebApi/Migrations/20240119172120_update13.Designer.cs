@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Data;
 
@@ -11,9 +12,11 @@ using WebApi.Data;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(emsDbContext))]
-    partial class emsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240119172120_update13")]
+    partial class update13
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,7 +67,10 @@ namespace WebApi.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ExpenseExpenceId")
+                    b.Property<string>("EmployeeRole")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ExpenseId")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
@@ -82,18 +88,15 @@ namespace WebApi.Migrations
                     b.Property<string>("RefreshToken")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("RefreshTokenExpirationDate")
+                    b.Property<DateTime?>("RefreshTokenEndDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Roles")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EmployeeId");
 
-                    b.HasIndex("ExpenseExpenceId");
+                    b.HasIndex("ExpenseId");
 
                     b.ToTable("Employees");
                 });
@@ -156,11 +159,48 @@ namespace WebApi.Migrations
                     b.ToTable("Transfers");
                 });
 
+            modelBuilder.Entity("WebApi.Data.Entities.User", b =>
+                {
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RefreshToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("RefreshTokenExpirationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Roles")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("WebApi.Data.Entities.Employee", b =>
                 {
                     b.HasOne("WebApi.Data.Entities.Expense", "Expense")
                         .WithMany("Employees")
-                        .HasForeignKey("ExpenseExpenceId");
+                        .HasForeignKey("ExpenseId");
 
                     b.Navigation("Expense");
                 });

@@ -1,7 +1,10 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Business.Commands.EmployeeCommands;
 using WebApi.Business.Commands.TokenCommands;
 using WebApi.Business.Commands.UserCommands;
+using WebApi.Business.Queries.EmployeeQueries;
 using WebApi.Data;
 using WebApi.Models;
 using WebApi.TokenOperations;
@@ -10,20 +13,20 @@ namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class ApplicationEmployeeController : ControllerBase
     {
         public readonly emsDbContext _dbContext;
-        public readonly IMapper _mapper;
+        private readonly IMapper _mapper;
         public readonly IConfiguration _configuration;
 
-        public UserController(emsDbContext dbContext, IConfiguration configuration, IMapper mapper)
+        public ApplicationEmployeeController(emsDbContext dbContext, IConfiguration configuration, IMapper mapper)
         {
             _dbContext = dbContext;
             _configuration = configuration;
             _mapper = mapper;
         }
 
-        [HttpPost]
+        [HttpPost("userpost")]
         public IActionResult Create([FromBody] CreateUserModelRequest newUser)
         {
             CreateUserCommand command = new CreateUserCommand(_dbContext, _mapper);
@@ -43,5 +46,9 @@ namespace WebApi.Controllers
 
 
 
+
+
+
     }
 }
+

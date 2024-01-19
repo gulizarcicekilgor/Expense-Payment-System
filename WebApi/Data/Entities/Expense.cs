@@ -8,6 +8,7 @@ namespace WebApi.Data.Entities
     {
         [Key][JsonIgnore][DatabaseGenerated(DatabaseGeneratedOption.Identity)]  //id otmatik artsın
         public int ExpenceId { get; set; }
+        public string ExpenseCode { get; set; }
         public int? EmployeeId {get; set; }
         public double? Amount {get; set; }
         public string? Currency {get; set; }

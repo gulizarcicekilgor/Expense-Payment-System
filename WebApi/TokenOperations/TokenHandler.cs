@@ -14,7 +14,7 @@ namespace WebApi.TokenOperations
             Configuration = configuration;
         }
         //Token üretecek metot.
-        public Token CreateAccessToken(User user)
+        public Token CreateAccessToken(Employee employee)
         {
             Token tokenInstance = new Token();
 

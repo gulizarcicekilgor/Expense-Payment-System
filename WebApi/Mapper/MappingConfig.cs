@@ -21,8 +21,8 @@ namespace WebApi.Mapper
              CreateMap<Expense, GetExpenseModelResponse>();
             CreateMap<GetExpenseModelResponse, Expense>();
 
-            CreateMap<CreateUserModelRequest, User>();
-            
+            CreateMap<CreateUserModelRequest, Employee>();
+            CreateMap<Employee, CreateUserModelRequest>();
             
         }
 

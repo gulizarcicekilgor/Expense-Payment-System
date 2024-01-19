@@ -17,7 +17,7 @@ namespace WebApi.Business.Commands.ExpenseCommands
         }
         public void Handle()
         {
-            var expense = _dbContext.Expenses.SingleOrDefault(e => e.Amount == Model.Amount); //değiştirilcek bu kontrol
+            var expense = _dbContext.Expenses.SingleOrDefault(e => e.ExpenseCode == Model.ExpenseCode); //değiştirilcek bu kontrol
             if (expense is not null)
             {
                 throw new InvalidOperationException("Expence already exists");

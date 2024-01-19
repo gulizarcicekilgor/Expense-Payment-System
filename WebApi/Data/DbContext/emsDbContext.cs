@@ -12,7 +12,6 @@ namespace WebApi.Data
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Expense> Expenses { get; set; }
         public DbSet<Transfer> Transfers { get; set; }
-        public DbSet<User> Users { get; set; }
         
 
         

@@ -20,14 +20,14 @@ namespace WebApi.Business.Commands.TokenCommands
         }
         public Token Handle()
         {
-            var user = _dbContext.Users.FirstOrDefault(e => e.UserName == Model.UserName && e.Password == Model.Password); 
-            if (user is not null)
+            var employee = _dbContext.Employees.FirstOrDefault(e => e.UserName == Model.UserName && e.Password == Model.Password); 
+            if (employee is not null)
             {
                 TokenHandler handler = new TokenHandler(_configuration);
-                Token token = handler.CreateAccessToken(user);
+                Token token = handler.CreateAccessToken(employee);
 
-                user.RefreshToken = token.RefreshToken;
-                user.RefreshTokenExpirationDate = token.Expiration.AddMinutes(5);
+                employee.RefreshToken = token.RefreshToken;
+                employee.RefreshTokenExpirationDate = token.Expiration.AddMinutes(5);
                 _dbContext.SaveChanges();
                 return token;
 

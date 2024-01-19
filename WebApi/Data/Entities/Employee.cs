@@ -15,11 +15,11 @@ namespace WebApi.Data.Entities
         public string? Email { get; set; }
         public string? UserName { get; set; }
         public string? Password { get; set; }
-        public string? EmployeeRole {get; set; }
+        public string? Roles {get; set; }
         public string? RefreshToken { get; set; }
-        public DateTime? RefreshTokenEndDate { get; set; }
+        public DateTime? RefreshTokenExpirationDate { get; set; }
 
-        public int? ExpenseId {get; set; }   //foreign key ilişkisi
+        //public int? ExpenseId {get; set; }   //foreign key ilişkisi
         public virtual Expense? Expense { get; set; }
     }
 

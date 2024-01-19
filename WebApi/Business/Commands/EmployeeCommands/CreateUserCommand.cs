@@ -17,13 +17,13 @@ namespace WebApi.Business.Commands.UserCommands
         }
         public void Handle()
         {
-            var user = _dbContext.Users.SingleOrDefault(e => e.UserName == Model.UserName); //değiştirilcek bu kontrol
+            var user = _dbContext.Employees.SingleOrDefault(e => e.UserName == Model.UserName); //değiştirilcek bu kontrol
             if (user is not null)
             {
                 throw new InvalidOperationException("Employee already exists");
             }
-            user = _mapper.Map<User>(Model);
-            _dbContext.Users.Add(user);
+            user = _mapper.Map<Employee>(Model);
+            _dbContext.Employees.Add(user);
             _dbContext.SaveChanges();
         }
 
