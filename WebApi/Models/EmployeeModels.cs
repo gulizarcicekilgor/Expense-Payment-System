@@ -1,5 +1,3 @@
-using WebApi.Data.Entities;
-
 namespace WebApi.Models
 {
     public class CreateEmployeeModelRequest

@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Business.Commands.EmployeeCommands;
 using WebApi.Business.Queries.EmployeeQueries;
@@ -20,6 +21,7 @@ namespace WebApi.Controllers
             _mapper = mapper;
         }
         [HttpGet]
+        [Authorize]
         public IActionResult GetEmployee()
         {
             GetEmployeeQuery query = new GetEmployeeQuery(_dbContext, _mapper);
