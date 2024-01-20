@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebApi.Business.Commands.ExpenseCommands;
 using WebApi.Business.Queries.ExpenseQueries;
 using WebApi.Data;
+using WebApi.Models;
 namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
@@ -14,17 +15,34 @@ namespace WebApi.Controllers
         public readonly emsDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public ExpenseController(emsDbContext dbContext, IMapper mapper)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+
+        public ExpenseController(emsDbContext dbContext, IMapper mapper,IHttpContextAccessor httpContextAccessor)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
         }
+
         [HttpGet]
-        public IActionResult GetExpense()
+        [Authorize]
+        public IActionResult GetMyExpenses()
         {
-            GetExpenseQuery query = new GetExpenseQuery(_dbContext, _mapper);
+            GetExpenseQuery query = new GetExpenseQuery(_dbContext, _mapper,_httpContextAccessor);
             var expense = query.Handle();
             return Ok(expense);
         }
+        
+        [HttpPost]
+        [Authorize]
+        public IActionResult CreateMyExpense([FromBody] CreateExpenseModelRquest expense)
+        {
+            CreateExpenseCommand command = new CreateExpenseCommand(_dbContext, _mapper,_httpContextAccessor);
+            command.Model = expense;
+            command.Handle();
+            return Ok();
+        }
+
     }
 }

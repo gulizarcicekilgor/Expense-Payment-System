@@ -34,23 +34,6 @@ namespace WebApi.Controllers
             return Ok(employee);
         }
         
-        [HttpGet("myemp")]
-        [Authorize]
-        public IActionResult GetEmploye()
-        {  string id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-    if (id == null)
-    {
-        // Token içeriğini loglama ekleyebilir veya hata durumunu bildirebilirsiniz.
-        // Log.Logger.Warning("NameIdentifier claim not found in the token.");
-        return StatusCode(401, "Unauthorized: NameIdentifier claim not found in the token.");
-    }
-
-    return Ok(id);
-
-        }
- 
-
         [HttpPost]
         public IActionResult CreateEmployee([FromBody] CreateEmployeeModelRequest employee)
         {
