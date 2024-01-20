@@ -11,7 +11,7 @@ namespace WebApi.Data
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Expense> Expenses { get; set; }
-        public DbSet<Transfer> Transfers { get; set; }
+        public DbSet<EftTransaction> Transactions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,7 @@ namespace WebApi.Data
             .HasDefaultValue("Pending Approval");
             base.OnModelCreating(modelBuilder);
         }
+        
         
 
         

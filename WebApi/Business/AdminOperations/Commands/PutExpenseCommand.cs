@@ -1,10 +1,7 @@
-using AutoMapper;
 using WebApi.Data;
 using WebApi.Models;
-using WebApi.Data.Entities;
-using System.Security.Claims;
 
-namespace WebApi.Business.Commands.ExpenseCommands
+namespace WebApi.Business.AdminOperations.Commands
 {
     public class PutExpenseCommand
     {   

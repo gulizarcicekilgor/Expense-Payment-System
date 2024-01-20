@@ -4,7 +4,7 @@ using WebApi.Models;
 using WebApi.Data.Entities;
 using System.Security.Claims;
 
-namespace WebApi.Business.Commands.ExpenseCommands
+namespace WebApi.Business.EmployeeOperations.Commands
 {
     public class CreateExpenseCommand
     {   

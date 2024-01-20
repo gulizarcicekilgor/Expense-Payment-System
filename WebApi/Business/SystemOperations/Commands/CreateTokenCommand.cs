@@ -3,7 +3,7 @@ using WebApi.Data;
 using WebApi.Models;
 using WebApi.TokenOperations;
 
-namespace WebApi.Business.Commands.TokenCommands
+namespace WebApi.Business.SystemOperations.Commands
 {
     public class CreateTokenCommand
     {

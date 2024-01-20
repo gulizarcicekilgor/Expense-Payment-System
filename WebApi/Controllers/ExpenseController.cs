@@ -2,8 +2,10 @@ using System.Security.Claims;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Business.Commands.ExpenseCommands;
-using WebApi.Business.Queries.ExpenseQueries;
+using WebApi.Business.AdminOperations.Commands;
+using WebApi.Business.AdminOperations.Queries;
+using WebApi.Business.EmployeeOperations.Commands;
+using WebApi.Business.EmployeeOperations.Queries;
 using WebApi.Data;
 using WebApi.Models;
 namespace WebApi.Controllers

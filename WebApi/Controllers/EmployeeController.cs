@@ -1,10 +1,8 @@
-using System.Security.Claims;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Business.Commands.EmployeeCommands;
-using WebApi.Business.Commands.TokenCommands;
-using WebApi.Business.Queries.EmployeeQueries;
+using WebApi.Business.SystemOperations.Commands;
+using WebApi.Business.SystemOperations.Queries;
 using WebApi.Data;
 using WebApi.Models;
 using WebApi.TokenOperations;
