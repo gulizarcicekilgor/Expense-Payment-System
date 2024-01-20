@@ -20,6 +20,9 @@ namespace WebApi.Mapper
 
              CreateMap<Expense, GetExpenseModelResponse>();
             CreateMap<GetExpenseModelResponse, Expense>();
+
+            CreateMap<UpdateExpenseModelRquest,Expense>();
+            CreateMap<Expense,UpdateExpenseModelRquest>();
             
         }
 
