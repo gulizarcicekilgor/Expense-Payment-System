@@ -20,14 +20,16 @@ namespace WebApi.Business.Commands.TokenCommands
         }
         public Token Handle()
         {
-            var employee = _dbContext.Employees.FirstOrDefault(e => e.UserName == Model.UserName && e.Password == Model.Password); 
+            var employee = _dbContext.Employees.FirstOrDefault(e => e.UserName == Model.UserName && e.Password == Model.Password);
             if (employee is not null)
             {
+                
                 TokenHandler handler = new TokenHandler(_configuration);
                 Token token = handler.CreateAccessToken(employee);
 
                 employee.RefreshToken = token.RefreshToken;
                 employee.RefreshTokenExpirationDate = token.Expiration.AddMinutes(5);
+
                 _dbContext.SaveChanges();
                 return token;
 
@@ -36,20 +38,7 @@ namespace WebApi.Business.Commands.TokenCommands
                 throw new InvalidOperationException("Kullanıcı adı, şifre hatalı");
 
         }
-
-
-
-
-
     }
-
-
-
-
-    // public string FirstName { get; set; }
-    // public string LastName { get; set; }
-    // public string Email { get; set; }
-    // public string ExpenceRole {get; set; }
 
 
 }

@@ -1,10 +1,10 @@
+using System.Security.Claims;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Business.Commands.ExpenseCommands;
 using WebApi.Business.Queries.ExpenseQueries;
 using WebApi.Data;
-using WebApi.Models;
-
 namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
@@ -26,18 +26,5 @@ namespace WebApi.Controllers
             var expense = query.Handle();
             return Ok(expense);
         }
-
-
-        [HttpPost]
-        public IActionResult CreateExpense([FromBody] CreateExpenseModelRquest expense)
-        {
-            CreateExpenseCommand command = new CreateExpenseCommand(_dbContext, _mapper);
-            command.Model = expense;
-            command.Handle();
-            return Ok();
-        }
-
-
-
     }
 }

@@ -27,19 +27,7 @@ namespace WebApi.Business.Commands.ExpenseCommands
             _dbContext.SaveChanges();
         }
 
-
-
-
-
     }
-
-
-
-
-        // public string FirstName { get; set; }
-        // public string LastName { get; set; }
-        // public string Email { get; set; }
-        // public string ExpenceRole {get; set; }
 
 
 }

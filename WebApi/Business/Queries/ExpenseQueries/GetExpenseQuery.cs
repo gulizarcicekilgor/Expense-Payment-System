@@ -22,5 +22,7 @@ namespace WebApi.Business.Queries.ExpenseQueries
             List<GetExpenseModelResponse> obj = _mapper.Map<List<GetExpenseModelResponse>>(expenses);
             return obj;
         }
+
+        
     }
 }

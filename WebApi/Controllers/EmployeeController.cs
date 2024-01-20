@@ -1,9 +1,9 @@
+using System.Security.Claims;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Business.Commands.EmployeeCommands;
 using WebApi.Business.Commands.TokenCommands;
-using WebApi.Business.Commands.UserCommands;
 using WebApi.Business.Queries.EmployeeQueries;
 using WebApi.Data;
 using WebApi.Models;
@@ -17,14 +17,14 @@ namespace WebApi.Controllers
     {
         public readonly emsDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
 
-        public EmployeeController(emsDbContext dbContext, IMapper mapper)
+        public EmployeeController(emsDbContext dbContext, IMapper mapper , IConfiguration configuration)
         {
             _dbContext = dbContext;
             _mapper = mapper;
+            _configuration = configuration;
         }
-
-        
         [HttpGet]
         [Authorize]
         public IActionResult GetEmployee()
@@ -33,7 +33,23 @@ namespace WebApi.Controllers
             var employee = query.Handle();
             return Ok(employee);
         }
+        
+        [HttpGet("myemp")]
+        [Authorize]
+        public IActionResult GetEmploye()
+        {  string id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
+    if (id == null)
+    {
+        // Token içeriğini loglama ekleyebilir veya hata durumunu bildirebilirsiniz.
+        // Log.Logger.Warning("NameIdentifier claim not found in the token.");
+        return StatusCode(401, "Unauthorized: NameIdentifier claim not found in the token.");
+    }
+
+    return Ok(id);
+
+        }
+ 
 
         [HttpPost]
         public IActionResult CreateEmployee([FromBody] CreateEmployeeModelRequest employee)
@@ -43,6 +59,22 @@ namespace WebApi.Controllers
             command.Handle();
             return Ok();
         }
+        [HttpPost("userstoken")]
+        public ActionResult<Token> CreateToken([FromBody] CreateTokenModel login)
+        {
+            CreateTokenCommand command = new CreateTokenCommand(_dbContext, _mapper, _configuration);
+            command.Model = login;
+            var token = command.Handle();
+            return token;
+        }
+
+        
+
+
+
+
+
+
 
 
 

@@ -1,7 +1,10 @@
+using System.Security.Claims;
 using System.Text;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using WebApi.Data;
@@ -16,7 +19,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddAutoMapper(typeof(CreateUserModelRequest));
+builder.Services.AddAutoMapper(typeof(CreateEmployeeModelRequest));
 
 var connectionString = builder.Configuration.GetConnectionString("MsSqlConnection");
 builder.Services.AddDbContext<emsDbContext>(options => options.UseSqlServer(connectionString));
@@ -65,6 +68,11 @@ builder.Services.AddSwaggerGen(option =>
     });
 });
 
+//in bu kod
+builder.Services.Configure<IdentityOptions> (options=>options.ClaimsIdentity.UserNameClaimType=ClaimTypes.NameIdentifier);
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddControllers();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
