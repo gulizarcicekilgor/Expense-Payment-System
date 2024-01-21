@@ -9,7 +9,7 @@ namespace WebApi.Business.AdminOperations.Commands
 {
     public class EftCommand
     {
-        public EftTransactionResponse Model {get; set;}
+        public EftTransactionResponse Model { get; set; }
         private readonly emsDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -53,21 +53,12 @@ namespace WebApi.Business.AdminOperations.Commands
                         ReceiverIban = account.IBAN,
                         ReceiverName = account.AccountName
                     };
-                    var eftTransactionEntity = _mapper.Map<EftTransaction>(eftResponse);
-            _dbContext.EftTransactions.Add(eftTransactionEntity);
-
-            // Hesaptan ExpenseAmount kadar para transferi gerçekleştir
-            account.Balance += eftResponse.Amount;
-
-            // Hesap bilgilerini güncelle
-            account.IBAN = eftResponse.ReceiverIban;
-            account.AccountName = eftResponse.ReceiverName;
-
-            // İşlem gerçekleştirildikten sonra veritabanını kaydet
-            _dbContext.SaveChanges();
-                    
-
                     eftResponses.Add(eftResponse);
+                    var eftTransactionEntity = _mapper.Map<EftTransaction>(eftResponse);
+                    _dbContext.EftTransactions.Add(eftTransactionEntity);
+
+                    // İşlem gerçekleştirildikten sonra veritabanını kaydet
+                    _dbContext.SaveChanges();
 
                 }
 
