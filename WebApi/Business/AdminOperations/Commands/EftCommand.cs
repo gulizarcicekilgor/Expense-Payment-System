@@ -1,5 +1,6 @@
 using AutoMapper;
 using WebApi.Data;
+using WebApi.Models;
 using static WebApi.Models.EftModel;
 
 
@@ -12,11 +13,10 @@ namespace WebApi.Business.EmployeeOperations.Commands
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public EftCommand(emsDbContext dbContext, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+        public EftCommand(emsDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;
-            _httpContextAccessor = httpContextAccessor;
         }
 
         public void Handle()
@@ -29,6 +29,15 @@ namespace WebApi.Business.EmployeeOperations.Commands
 
 
         }
+        public List<GetExpenseModelResponse> Handle2()
+        {   
+            var expenses = _dbContext.Expenses
+            .Where(e=>e.ExpenseStatus == "approved")
+            .ToList();
+            List<GetExpenseModelResponse> obj = _mapper.Map<List<GetExpenseModelResponse>>(expenses);
+            return obj;
+        }
+
 
 
     }
