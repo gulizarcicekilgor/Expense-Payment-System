@@ -22,7 +22,7 @@ namespace WebApi.Controllers
         public IActionResult GetApprovedExpenses()
         {
             EftCommand query = new EftCommand(_dbContext, _mapper);
-            var expense = query.Handle2();
+            var expense = query.EmployeesTobePaid();
             return Ok(expense);
         }
     }
