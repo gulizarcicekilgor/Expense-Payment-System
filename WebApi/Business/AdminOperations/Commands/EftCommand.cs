@@ -21,22 +21,17 @@ namespace WebApi.Business.EmployeeOperations.Commands
 
         public void Handle()
         {
-            //expens apply olan müşteri id si lazım
-
-
-
-
-
-
+            //expens apply olan müşteri id si laz
         }
-        public List<int> EmployeesTobePaid()
+        public List<EftTransactionResponse> EmployeesTobePaid()
         {
             var expenses = _dbContext.Expenses
                 .Where(e => e.ExpenseStatus == "approved")
                 .ToList();
-            List<int> employeeIds = _mapper.Map<List<GetExpenseModelResponse>>(expenses)
-            .Select(expense => expense.EmployeeId)
-            .ToList();
+
+            List<EftTransactionResponse> eftResponses = new List<EftTransactionResponse>();
+
+
             foreach (var expenseResponse in expenses)
             {
                 // Belirli bir EmployeeId'ye ait hesabı bul
@@ -45,11 +40,26 @@ namespace WebApi.Business.EmployeeOperations.Commands
                 if (account != null)
                 {
                     // Hesaptan ExpenseAmount kadar para transferi gerçekleştir
-                    account.Balance -= expenseResponse.Amount;
+                    account.Balance += expenseResponse.Amount;
 
                     // İşlem gerçekleştirildikten sonra hesap bilgilerini güncelle
                     _dbContext.SaveChanges();
+                    // EftTransactionResponse oluştur ve listeye ekle
+                    var eftResponse = new EftTransactionResponse
+                    {
+                        AccountId = account.AccountId, // Burada AccountId'yi kullanabilirsiniz (Varsa)
+                        ReferenceNumber = Guid.NewGuid().ToString(),
+                        TransactionDate = DateTime.UtcNow,
+                        Amount = (double)expenseResponse.Amount,
+                        Description = expenseResponse.Description,
+                        ReceiverAccount = account.AccountNumber.ToString(),
+                        ReceiverIban = account.IBAN,
+                        ReceiverName = account.AccountName
+                    };
+
+                    eftResponses.Add(eftResponse);
                 }
+
                 else
                 {
                     // Hesap bulunamadı durumuyla başa çıkma
@@ -57,7 +67,7 @@ namespace WebApi.Business.EmployeeOperations.Commands
                 }
             }
 
-            return employeeIds;
+            return eftResponses;
 
 
 
