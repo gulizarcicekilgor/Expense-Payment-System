@@ -1,6 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Business.EmployeeOperations.Commands;
+using WebApi.Business.AdminOperations.Commands;
 using WebApi.Data;
 
 namespace WebApi.Controllers

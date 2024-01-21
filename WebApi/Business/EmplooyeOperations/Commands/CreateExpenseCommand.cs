@@ -23,8 +23,6 @@ namespace WebApi.Business.EmployeeOperations.Commands
             // Kullanıcının kimliğini çıkart
             string userIdstr = _httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             int userId = Convert.ToInt32(userIdstr);
-            
-
             var expense = _dbContext.Expenses.SingleOrDefault(e => e.ExpenseCode == Model.ExpenseCode 
                                                             && e.EmployeeId == userId); //değiştirilcek bu kontrol
             if (expense is not null)

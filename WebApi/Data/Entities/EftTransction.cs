@@ -18,5 +18,6 @@ namespace WebApi.Data.Entities
         public string? ReceiverName { get; set; }
         public int? AccountId { get; set; }
         public virtual List<Account>? Accounts { get; set; }
+
     }
 }

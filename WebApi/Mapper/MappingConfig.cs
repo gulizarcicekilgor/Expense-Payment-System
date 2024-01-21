@@ -29,6 +29,10 @@ namespace WebApi.Mapper
             CreateMap <Account,AccountModelResponse>();
             CreateMap <AccountModelResponse,Account>();
 
+            CreateMap<EftTransaction,EftTransactionResponse>();
+            CreateMap<EftTransactionResponse,EftTransaction>();
+
+
             
         }
 

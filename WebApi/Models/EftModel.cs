@@ -1,7 +1,5 @@
 namespace WebApi.Models
 {
-    public class EftModel
-    {
         public class EftTransactionRequest
         {
             public double Amount { get; set; }
@@ -11,7 +9,6 @@ namespace WebApi.Models
             public string ReceiverName { get; set; }
 
         }
-
         public class EftTransactionResponse
         {
             public int AccountId { get; set; }
@@ -23,6 +20,14 @@ namespace WebApi.Models
             public string ReceiverIban { get; set; }
             public string ReceiverName { get; set; }
         }
+        public class EftTransactionResponseEmployee
+        {
+            public string ReferenceNumber { get; set; }
+            public DateTime TransactionDate { get; set; }
+            public double Amount { get; set; }
+            public string Description { get; set; }
+            public string SenderAccount { get; set; }
+        }
 
-    }
+    
 }

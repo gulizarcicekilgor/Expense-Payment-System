@@ -1,14 +1,15 @@
+using System.Transactions;
 using AutoMapper;
 using WebApi.Data;
+using WebApi.Data.Entities;
 using WebApi.Models;
-using static WebApi.Models.EftModel;
 
 
-namespace WebApi.Business.EmployeeOperations.Commands
+namespace WebApi.Business.AdminOperations.Commands
 {
     public class EftCommand
     {
-        public EftTransactionRequest Model { get; set; }
+        public EftTransactionResponse Model {get; set;}
         private readonly emsDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -19,10 +20,6 @@ namespace WebApi.Business.EmployeeOperations.Commands
             _mapper = mapper;
         }
 
-        public void Handle()
-        {
-            //expens apply olan müşteri id si laz
-        }
         public List<EftTransactionResponse> EmployeesTobePaid()
         {
             var expenses = _dbContext.Expenses
@@ -41,9 +38,9 @@ namespace WebApi.Business.EmployeeOperations.Commands
                 {
                     // Hesaptan ExpenseAmount kadar para transferi gerçekleştir
                     account.Balance += expenseResponse.Amount;
-
                     // İşlem gerçekleştirildikten sonra hesap bilgilerini güncelle
                     _dbContext.SaveChanges();
+
                     // EftTransactionResponse oluştur ve listeye ekle
                     var eftResponse = new EftTransactionResponse
                     {
@@ -56,8 +53,22 @@ namespace WebApi.Business.EmployeeOperations.Commands
                         ReceiverIban = account.IBAN,
                         ReceiverName = account.AccountName
                     };
+                    var eftTransactionEntity = _mapper.Map<EftTransaction>(eftResponse);
+            _dbContext.EftTransactions.Add(eftTransactionEntity);
+
+            // Hesaptan ExpenseAmount kadar para transferi gerçekleştir
+            account.Balance += eftResponse.Amount;
+
+            // Hesap bilgilerini güncelle
+            account.IBAN = eftResponse.ReceiverIban;
+            account.AccountName = eftResponse.ReceiverName;
+
+            // İşlem gerçekleştirildikten sonra veritabanını kaydet
+            _dbContext.SaveChanges();
+                    
 
                     eftResponses.Add(eftResponse);
+
                 }
 
                 else
@@ -68,9 +79,6 @@ namespace WebApi.Business.EmployeeOperations.Commands
             }
 
             return eftResponses;
-
-
-
         }
 
 

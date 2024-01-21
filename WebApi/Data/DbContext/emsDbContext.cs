@@ -11,7 +11,7 @@ namespace WebApi.Data
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Expense> Expenses { get; set; }
-        public DbSet<EftTransaction> Transactions { get; set; }
+        public DbSet<EftTransaction> EftTransactions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

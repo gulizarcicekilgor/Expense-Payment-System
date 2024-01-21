@@ -16,8 +16,7 @@ namespace WebApi.Data.Entities
         public string? Roles {get; set; }
         public string? RefreshToken { get; set; }
         public DateTime? RefreshTokenExpirationDate { get; set; }
-
-        //public int? ExpenseId {get; set; }   //foreign key ilişkisi
+        
     }
 
 }
