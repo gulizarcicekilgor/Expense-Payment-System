@@ -1,6 +1,8 @@
 using AutoMapper;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Business.EftOperations.Commands;
+using WebApi.Business.EftOperations.Validations;
 using WebApi.Data;
 using WebApi.Models;
 
@@ -31,9 +33,6 @@ namespace WebApi.Controllers
         {
             DeleteEftCommand cmd = new DeleteEftCommand(_dbContext);
             cmd.EftId = id;
-
-            // DeleteEftCommandValidator vl = new DeleteEftCommandValidator();
-            // vl.ValidateAndThrow(cmd);
             cmd.Handle();
             return Ok();
         }
@@ -44,9 +43,8 @@ namespace WebApi.Controllers
             cmd.EftId = id;
             cmd.Model = newModel;
 
-            // UpdateEftCommandValidator vl = new UpdateEftCommandValidator();
-            // vl.ValidateAndThrow(cmd);
-
+            UpdateEftValidator vl = new UpdateEftValidator();
+            vl.ValidateAndThrow<EftupdatedModelRequest>(cmd.Model);
             cmd.Handle();
             return Ok();
         }

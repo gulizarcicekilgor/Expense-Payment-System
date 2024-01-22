@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Business.AccountOperations.Commands;
 using WebApi.Business.AccountOperations.Queries;
+using WebApi.Business.AccountOperations.Validations;
 using WebApi.Data;
 using WebApi.Models;
 namespace WebApi.Controllers

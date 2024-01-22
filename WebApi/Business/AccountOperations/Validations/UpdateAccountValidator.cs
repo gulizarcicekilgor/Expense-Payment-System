@@ -1,7 +1,7 @@
 using FluentValidation;
 using WebApi.Models;
 
-namespace WebApi.Business.AccountOperations.Commands
+namespace WebApi.Business.AccountOperations.Validations
 {
     public class UpdateAccountValidator : AbstractValidator<AccountupdatedModelRequest>
     {
