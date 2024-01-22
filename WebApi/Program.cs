@@ -8,6 +8,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using WebApi.Data;
+using WebApi.Data.Entities;
 using WebApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);

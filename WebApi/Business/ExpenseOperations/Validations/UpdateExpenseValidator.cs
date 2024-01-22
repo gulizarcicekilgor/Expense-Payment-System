@@ -16,7 +16,7 @@ namespace WebApi.Business.ExpenseOperations.Validations
 
             bool BeAValidExpenseStatus(string status)
             {
-                return status == "Pending Approval" || status == "Approved" || status == "Rejected";
+                return status == "Pending Approval" || status == "approved" || status == "Rejected";
             }
 
 

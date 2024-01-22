@@ -6,7 +6,7 @@ namespace WebApi.Data.Entities
     public class Employee
     {  
         [Key][DatabaseGenerated(DatabaseGeneratedOption.Identity)]  //id otmatik artsın
-        public int EmployeeId { get; set; }
+        public int? EmployeeId { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public int IdentityNumber { get; set; }

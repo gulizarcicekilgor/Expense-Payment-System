@@ -100,11 +100,11 @@ namespace WebApi.Migrations
 
             modelBuilder.Entity("WebApi.Data.Entities.Employee", b =>
                 {
-                    b.Property<int>("EmployeeId")
+                    b.Property<int?>("EmployeeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("EmployeeId"));
 
                     b.Property<int?>("AccountId")
                         .HasColumnType("int");
