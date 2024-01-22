@@ -1,4 +1,3 @@
-using System.Transactions;
 using AutoMapper;
 using WebApi.Data;
 using WebApi.Data.Entities;
@@ -7,14 +6,14 @@ using WebApi.Models;
 
 namespace WebApi.Business.EftOperations.Commands
 {
-    public class EftCommand
+    public class CreateEftCommand
     {
         public EftTransactionResponse Model { get; set; }
         private readonly emsDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public EftCommand(emsDbContext dbContext, IMapper mapper)
+        public CreateEftCommand(emsDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;

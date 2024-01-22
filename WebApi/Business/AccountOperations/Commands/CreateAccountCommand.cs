@@ -3,7 +3,6 @@ using AutoMapper;
 using WebApi.Data;
 using WebApi.Data.Entities;
 using WebApi.Models;
-
 namespace WebApi.Business.AccountOperations.Commands
 {
     public class CreateAccountCommand

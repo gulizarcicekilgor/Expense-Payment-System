@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Business.EmployeeOperations.Commands;
 using WebApi.Business.LoginOperations.Commands;
 using WebApi.Business.UserOperations.Commands;
 using WebApi.Business.UserOperations.Queries;
@@ -58,6 +59,19 @@ namespace WebApi.Controllers
 
             // DeleteEmployeeCommandValidator vl = new DeleteEmployeeCommandValidator();
             // vl.ValidateAndThrow(cmd);
+            cmd.Handle();
+            return Ok();
+        }
+         [HttpPut("id")]
+        public IActionResult UpdateEmployee(int id, [FromBody] UpdateEmployeeModelRequest newModel)
+        {
+            UpdateEmployeeCommand cmd = new UpdateEmployeeCommand(_dbContext);
+            cmd.EmployeeId = id;
+            cmd.Model = newModel;
+
+            // UpdateEmployeeCommandValidator vl = new UpdateEmployeeCommandValidator();
+            // vl.ValidateAndThrow(cmd);
+
             cmd.Handle();
             return Ok();
         }

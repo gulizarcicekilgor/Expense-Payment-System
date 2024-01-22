@@ -36,6 +36,9 @@ namespace WebApi.Mapper
            CreateMap<Account,AccountupdatedModelRequest>();
             CreateMap<AccountupdatedModelRequest,Account>();
 
+            CreateMap<Employee,UpdateEmployeeModelRequest>();
+            CreateMap<UpdateEmployeeModelRequest,Employee>();
+
 
             
         }

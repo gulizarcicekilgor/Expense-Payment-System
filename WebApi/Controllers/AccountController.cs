@@ -1,5 +1,6 @@
 
 using AutoMapper;
+using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Business.AccountOperations.Commands;
@@ -40,6 +41,8 @@ namespace WebApi.Controllers
         {
             CreateAccountCommand command = new CreateAccountCommand(_dbContext, _mapper, _httpContextAccessor);
             command.Model = account;
+             CreateAccountValidator vl = new CreateAccountValidator();
+          vl.ValidateAndThrow<AccountModelRequest>(command.Model);
             command.Handle();
             return Ok();
         }
@@ -56,15 +59,15 @@ namespace WebApi.Controllers
             cmd.Handle();
             return Ok();
         }
-         [HttpPut("id")]
+        [HttpPut("id")]
         public IActionResult UpdateAccount(int id, [FromBody] AccountupdatedModelRequest newModel)
         {
-            UpdateAccountCommand cmd = new UpdateAccountCommand(_dbContext,_mapper);
+            UpdateAccountCommand cmd = new UpdateAccountCommand(_dbContext, _mapper);
             cmd.AccountId = id;
             cmd.Model = newModel;
 
-            // UpdateGenreCommandValidator vl = new UpdateGenreCommandValidator();
-            // vl.ValidateAndThrow(cmd);
+            UpdateAccountValidator vl = new UpdateAccountValidator();
+            vl.ValidateAndThrow<AccountupdatedModelRequest>(cmd.Model);
 
             cmd.Handle();
             return Ok();

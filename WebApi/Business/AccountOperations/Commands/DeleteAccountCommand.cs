@@ -1,8 +1,4 @@
-
-
-using AutoMapper;
 using WebApi.Data;
-using WebApi.Models;
 
 namespace WebApi.Business.AccountOperations.Commands
 {

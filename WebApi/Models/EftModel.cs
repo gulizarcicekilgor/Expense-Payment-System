@@ -9,6 +9,11 @@ namespace WebApi.Models
             public string ReceiverName { get; set; }
 
         }
+        public class EftupdatedModelRequest
+        {
+            public string Description { get; set; }
+
+        }
         public class EftTransactionResponse
         {
             public int AccountId { get; set; }
@@ -28,6 +33,7 @@ namespace WebApi.Models
             public string Description { get; set; }
             public string SenderAccount { get; set; }
         }
+        
 
     
 }

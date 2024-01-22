@@ -2,6 +2,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Business.EftOperations.Commands;
 using WebApi.Data;
+using WebApi.Models;
 
 namespace WebApi.Controllers
 {
@@ -21,7 +22,7 @@ namespace WebApi.Controllers
         //[Authorize]
         public IActionResult GetApprovedExpenses()
         {
-            EftCommand query = new EftCommand(_dbContext, _mapper);
+            CreateEftCommand query = new CreateEftCommand(_dbContext, _mapper);
             var expense = query.EmployeesTobePaid();
             return Ok(expense);
         }
@@ -33,6 +34,19 @@ namespace WebApi.Controllers
 
             // DeleteEftCommandValidator vl = new DeleteEftCommandValidator();
             // vl.ValidateAndThrow(cmd);
+            cmd.Handle();
+            return Ok();
+        }
+         [HttpPut("id")]
+        public IActionResult UpdateEft(int id, [FromBody] EftupdatedModelRequest newModel)
+        {
+            UpdateEftCommand cmd = new UpdateEftCommand(_dbContext, _mapper);
+            cmd.EftId = id;
+            cmd.Model = newModel;
+
+            // UpdateEftCommandValidator vl = new UpdateEftCommandValidator();
+            // vl.ValidateAndThrow(cmd);
+
             cmd.Handle();
             return Ok();
         }
