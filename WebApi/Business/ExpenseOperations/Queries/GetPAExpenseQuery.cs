@@ -3,7 +3,7 @@ using AutoMapper;
 using WebApi.Data;
 using WebApi.Models;
 
-namespace WebApi.Business.AdminOperations.Queries
+namespace WebApi.Business.ExpenseOperations.Queries
 {
     public class GetPAExpenseQuery
     {   

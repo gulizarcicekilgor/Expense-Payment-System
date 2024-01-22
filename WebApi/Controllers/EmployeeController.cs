@@ -1,8 +1,9 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Business.SystemOperations.Commands;
-using WebApi.Business.SystemOperations.Queries;
+using WebApi.Business.LoginOperations.Commands;
+using WebApi.Business.UserOperations.Commands;
+using WebApi.Business.UserOperations.Queries;
 using WebApi.Data;
 using WebApi.Models;
 using WebApi.TokenOperations;
@@ -47,6 +48,18 @@ namespace WebApi.Controllers
             command.Model = login;
             var token = command.Handle();
             return token;
+        }
+
+        [HttpDelete("id")]
+        public IActionResult DeleteEmployee(int id)
+        {
+            DeleteEmployeeCommand cmd = new DeleteEmployeeCommand(_dbContext);
+            cmd.EmployeId = id;
+
+            // DeleteEmployeeCommandValidator vl = new DeleteEmployeeCommandValidator();
+            // vl.ValidateAndThrow(cmd);
+            cmd.Handle();
+            return Ok();
         }
 
         

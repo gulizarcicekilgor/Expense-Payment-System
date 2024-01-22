@@ -1,7 +1,7 @@
 using WebApi.Data;
 using WebApi.Models;
 
-namespace WebApi.Business.AdminOperations.Commands
+namespace WebApi.Business.ExpenseOperations.Commands
 {
     public class PutExpenseCommand
     {   

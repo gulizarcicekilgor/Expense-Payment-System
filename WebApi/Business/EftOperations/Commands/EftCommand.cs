@@ -5,7 +5,7 @@ using WebApi.Data.Entities;
 using WebApi.Models;
 
 
-namespace WebApi.Business.AdminOperations.Commands
+namespace WebApi.Business.EftOperations.Commands
 {
     public class EftCommand
     {
@@ -22,13 +22,8 @@ namespace WebApi.Business.AdminOperations.Commands
 
         public List<EftTransactionResponse> EmployeesTobePaid()
         {
-            var expenses = _dbContext.Expenses
-                .Where(e => e.ExpenseStatus == "approved")
-                .ToList();
-
+            var expenses = _dbContext.Expenses.Where(e => e.ExpenseStatus == "approved").ToList();
             List<EftTransactionResponse> eftResponses = new List<EftTransactionResponse>();
-
-
             foreach (var expenseResponse in expenses)
             {
                 // Belirli bir EmployeeId'ye ait hesabı bul
@@ -59,16 +54,9 @@ namespace WebApi.Business.AdminOperations.Commands
 
                     // İşlem gerçekleştirildikten sonra veritabanını kaydet
                     _dbContext.SaveChanges();
-
                 }
-
-                else
-                {
-                    // Hesap bulunamadı durumuyla başa çıkma
-                    throw new InvalidOperationException($"EmployeeId {expenseResponse.EmployeeId} için hesap bulunamadı.");
-                }
+                else{throw new InvalidOperationException($"EmployeeId {expenseResponse.EmployeeId} için hesap bulunamadı.");}
             }
-
             return eftResponses;
         }
 

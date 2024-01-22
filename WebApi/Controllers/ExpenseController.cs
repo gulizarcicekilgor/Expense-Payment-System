@@ -1,11 +1,8 @@
-using System.Security.Claims;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Business.AdminOperations.Commands;
-using WebApi.Business.AdminOperations.Queries;
-using WebApi.Business.EmployeeOperations.Commands;
-using WebApi.Business.EmployeeOperations.Queries;
+using WebApi.Business.ExpenseOperations.Commands;
+using WebApi.Business.ExpenseOperations.Queries;
 using WebApi.Data;
 using WebApi.Models;
 namespace WebApi.Controllers
@@ -65,6 +62,17 @@ namespace WebApi.Controllers
             command.Handle();
             return Ok();
         }
+         [HttpDelete("id")]
+        public IActionResult DeleteExpense(int id)
+        {
+            DeleteExpenseCommand cmd = new DeleteExpenseCommand(_dbContext);
+            cmd.ExpenseId = id;
+            // DeleteExpenseCommandValidator vl = new DeleteExpenseCommandValidator();
+            // vl.ValidateAndThrow(cmd);
+            cmd.Handle();
+            return Ok();
+        }
+
 
 
 

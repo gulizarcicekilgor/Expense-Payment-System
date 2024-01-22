@@ -1,6 +1,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Business.AdminOperations.Commands;
+using WebApi.Business.EftOperations.Commands;
 using WebApi.Data;
 
 namespace WebApi.Controllers
@@ -24,6 +24,17 @@ namespace WebApi.Controllers
             EftCommand query = new EftCommand(_dbContext, _mapper);
             var expense = query.EmployeesTobePaid();
             return Ok(expense);
+        }
+        [HttpDelete("id")]
+        public IActionResult DeleteAccount(int id)
+        {
+            DeleteEftCommand cmd = new DeleteEftCommand(_dbContext);
+            cmd.EftId = id;
+
+            // DeleteEftCommandValidator vl = new DeleteEftCommandValidator();
+            // vl.ValidateAndThrow(cmd);
+            cmd.Handle();
+            return Ok();
         }
     }
 }

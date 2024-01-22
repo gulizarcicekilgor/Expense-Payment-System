@@ -1,20 +1,21 @@
+using System.Security.Claims;
 using AutoMapper;
 using WebApi.Data;
-using WebApi.Models;
 using WebApi.Data.Entities;
-using System.Security.Claims;
+using WebApi.Models;
 
-namespace WebApi.Business.EmployeeOperations.Commands
+namespace WebApi.Business.AccountOperations.Commands
 {
-    public class CreateExpenseCommand
-    {   
-        public CreateExpenseModelRquest Model {get; set;}
+    public class CreateAccountCommand
+    {
+        public AccountModelRequest Model { get; set; }
         private readonly emsDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CreateExpenseCommand(emsDbContext dbContext,IMapper mapper,IHttpContextAccessor httpContextAccessor)
-        {   _dbContext = dbContext;
+        public CreateAccountCommand(emsDbContext dbContext, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+        {
+            _dbContext = dbContext;
             _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
         }
@@ -23,15 +24,17 @@ namespace WebApi.Business.EmployeeOperations.Commands
             // Kullanıcının kimliğini çıkart
             string userIdstr = _httpContextAccessor.HttpContext?.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             int userId = Convert.ToInt32(userIdstr);
-            var expense = _dbContext.Expenses.SingleOrDefault(e => e.ExpenseCode == Model.ExpenseCode 
+
+
+            var account = _dbContext.Accounts.SingleOrDefault(e => e.AccountNumber == Model.AccountNumber
                                                             && e.EmployeeId == userId); //değiştirilcek bu kontrol
-            if (expense is not null)
+            if (account is not null)
             {
                 throw new InvalidOperationException("Expence already exists");
             }
-            expense = _mapper.Map<Expense>(Model);
-            expense.EmployeeId = userId;
-            _dbContext.Expenses.Add(expense);
+            account = _mapper.Map<Account>(Model);
+            account.EmployeeId = userId;
+            _dbContext.Accounts.Add(account);
             _dbContext.SaveChanges();
         }
 

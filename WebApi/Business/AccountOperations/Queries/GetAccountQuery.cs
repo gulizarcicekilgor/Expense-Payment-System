@@ -3,7 +3,7 @@ using AutoMapper;
 using WebApi.Data;
 using WebApi.Models;
 
-namespace WebApi.Business.EmployeeOperations.Queries
+namespace WebApi.Business.AccountOperations.Queries
 {
     public class GetAccountQuery
     {   

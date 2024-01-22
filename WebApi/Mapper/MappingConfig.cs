@@ -33,6 +33,10 @@ namespace WebApi.Mapper
             CreateMap<EftTransactionResponse,EftTransaction>();
 
 
+           CreateMap<Account,AccountupdatedModelRequest>();
+            CreateMap<AccountupdatedModelRequest,Account>();
+
+
             
         }
 

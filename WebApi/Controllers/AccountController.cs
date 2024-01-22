@@ -2,8 +2,8 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Business.EmployeeOperations.Queries;
-using WebApi.Business.SystemOperations.Commands;
+using WebApi.Business.AccountOperations.Commands;
+using WebApi.Business.AccountOperations.Queries;
 using WebApi.Data;
 using WebApi.Models;
 namespace WebApi.Controllers
@@ -45,16 +45,30 @@ namespace WebApi.Controllers
         }
 
 
-        // [HttpPut("accountCode")]
-        // //[Authorize]
-        // public IActionResult UpdateAccount(string accountCode,[FromBody] UpdateAccountModelRquest model)
-        // {
-        //     PutAccountCommand command = new PutAccountCommand(_dbContext);
-        //     command.AccountCode=accountCode;
-        //     command.Model = model;
-        //     command.Handle();
-        //     return Ok();
-        // }
+        [HttpDelete("id")]
+        public IActionResult DeleteAccount(int id)
+        {
+            DeleteAccountCommand cmd = new DeleteAccountCommand(_dbContext);
+            cmd.AccountId = id;
+
+            // DeleteAccountCommandValidator vl = new DeleteAccountCommandValidator();
+            // vl.ValidateAndThrow(cmd);
+            cmd.Handle();
+            return Ok();
+        }
+         [HttpPut("id")]
+        public IActionResult UpdateAccount(int id, [FromBody] AccountupdatedModelRequest newModel)
+        {
+            UpdateAccountCommand cmd = new UpdateAccountCommand(_dbContext,_mapper);
+            cmd.AccountId = id;
+            cmd.Model = newModel;
+
+            // UpdateGenreCommandValidator vl = new UpdateGenreCommandValidator();
+            // vl.ValidateAndThrow(cmd);
+
+            cmd.Handle();
+            return Ok();
+        }
 
 
 
